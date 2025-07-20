@@ -110,6 +110,9 @@ vim.o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
+-- Wrap lines if they go over the edge
+vim.opt.wrap = true
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -282,6 +285,8 @@ require('lazy').setup({
   },
 
   { 'ThePrimeagen/vim-be-good' },
+
+  { 'nvim-treesitter/nvim-treesitter-context', config = true }, -- This is for adding the vscode on top function thingy for nested functions
 
   -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
   {
