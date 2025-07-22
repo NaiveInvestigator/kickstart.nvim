@@ -111,7 +111,7 @@ vim.o.mouse = 'a'
 vim.o.showmode = false
 
 -- Wrap lines if they go over the edge
-vim.opt.wrap = true
+vim.opt.wrap = false
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -127,6 +127,15 @@ vim.o.breakindent = true
 -- Save undo history
 vim.o.undofile = true
 
+-- Undo directory
+vim.opt.undodir = vim.fn.expand '~/.vim/undodir'
+
+-- Create undo directory if it doesn't exist
+local undodir = vim.fn.expand '~/.vim/undodir'
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, 'p')
+end
+
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -134,8 +143,9 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
 
--- Decrease update time
-vim.o.updatetime = 250
+-- Decrease update time / Faster autocomplete apparently?
+-- vim.o.updatetime = 250
+vim.o.updatetime = 100
 
 -- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
@@ -207,6 +217,33 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+
+-- Move lines up/down
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set('n', '<A-Down>', ':m .+1<CR>==', { desc = 'Move line down' })
+vim.keymap.set('n', '<A-Up>', ':m .-2<CR>==', { desc = 'Move line up' })
+vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+
+-- Better indenting in visual mode
+vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and reselect' })
+vim.keymap.set('v', '<A-Left>', '<gv', { desc = 'Indent left and reselect' })
+vim.keymap.set('v', '<A-Right>', '>gv', { desc = 'Indent right and reselect' })
+
+-- Disable Shift + Down and Shift + Up in all relevant modes
+vim.keymap.set('n', '<S-Down>', '<Nop>', { desc = 'Disable Shift + Down' })
+vim.keymap.set('n', '<S-Up>', '<Nop>', { desc = 'Disable Shift + Up' })
+vim.keymap.set('v', '<S-Down>', '<Nop>', { desc = 'Disable Shift + Down (visual)' })
+vim.keymap.set('v', '<S-Up>', '<Nop>', { desc = 'Disable Shift + Up (visual)' })
+vim.keymap.set('i', '<S-Down>', '<Nop>', { desc = 'Disable Shift + Down (insert)' })
+vim.keymap.set('i', '<S-Up>', '<Nop>', { desc = 'Disable Shift + Up (insert)' })
+
+-- Quick config editing
+vim.keymap.set('n', '<leader>rc', ':e ~/.config/nvim/init.lua<CR>', { desc = 'Edit config' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -995,7 +1032,7 @@ require('lazy').setup({
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
+        additional_vim_regex_highlighting = { 'ruby', 'dart' },
       },
       indent = { enable = true, disable = { 'ruby', 'dart' } },
     },
