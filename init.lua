@@ -835,13 +835,15 @@ require('lazy').setup({
           return nil
         else
           return {
-            timeout_ms = 500,
+            -- timeout_ms = 500,
+            timeout_ms = 1000,
             lsp_format = 'fallback',
           }
         end
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        dart = { 'dart_format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
