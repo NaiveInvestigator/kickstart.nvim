@@ -285,6 +285,9 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+-- This is for nvchad base46 setup
+vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -926,20 +929,6 @@ require('lazy').setup({
   --   end,
   -- },
 
-  {
-    'marko-cerovac/material.nvim',
-    priority = 1000,
-    config = function()
-      -- require('material').setup {
-      --   disable = {
-      --     background = true,
-      --   },
-      -- }
-      vim.g.material_style = 'darker'
-      vim.cmd 'colorscheme material'
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
@@ -951,6 +940,24 @@ require('lazy').setup({
     opts = { signs = false },
   },
 
+  -- for getting colors from matugen
+  {
+    'nvchad/ui',
+    config = function()
+      require 'nvchad'
+    end,
+  },
+
+  {
+    'nvchad/base46',
+    lazy = true,
+    build = function()
+      require('base46').load_all_highlights()
+    end,
+  },
+  -- testing blink integration with nvchad ui
+  -- { import = "nvchad.blink.lazyspec" },
+  --
   { -- Collection of various small independent plugins/modules
     'nvim-mini/mini.nvim',
     config = function()
@@ -979,9 +986,9 @@ require('lazy').setup({
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
+      -- local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
@@ -1097,6 +1104,26 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+})
+
+-- this is for nvchad base46 setup
+dofile(vim.g.base46_cache .. 'defaults')
+dofile(vim.g.base46_cache .. 'statusline')
+
+-- this is for selecting the pywal nvchad theme
+require('nvconfig').base46.theme = 'chadwal'
+require('base46').load_all_highlights()
+
+-- this is for nvchad matugen config
+os.execute 'python ~/.config/nvim/pywal/chadwal.py &> /dev/null &'
+
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd('Signal', {
+  pattern = 'SIGUSR1',
+  callback = function()
+    require('nvchad.utils').reload()
+  end,
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
