@@ -1128,10 +1128,6 @@ require('lazy').setup({
 dofile(vim.g.base46_cache .. 'defaults')
 dofile(vim.g.base46_cache .. 'statusline')
 
--- this is for selecting the pywal nvchad theme
-require('nvconfig').base46.theme = 'chadwal'
-require('base46').load_all_highlights()
-
 -- this is for nvchad matugen config
 os.execute 'python ~/.config/nvim/pywal/chadwal.py &> /dev/null &'
 
