@@ -537,13 +537,13 @@ require('lazy').setup({
       })
 
       -- Override default behavior and theme when searching
-      vim.keymap.set('n', '<leader>/', function()
+      -- vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, { desc = '[/] Fuzzily search in current buffer' })
+        -- builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          -- winblend = 10,
+          -- previewer = false,
+        -- })
+      -- end, { desc = '[/] Fuzzily search in current buffer' })
 
       -- Slightly advanced example of overriding default behavior and theme
       -- vim.keymap.set('n', '<leader>/', function()
@@ -995,7 +995,7 @@ require('lazy').setup({
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function() return '%2l:%-2v' end
+      -- statusline.section_location = function() return '%2l:%-2v' end
 
       -- ... and there is more!
       --  Check out: https://github.com/nvim-mini/mini.nvim
