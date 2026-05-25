@@ -1050,13 +1050,22 @@ end
 -- dofile(vim.g.base46_cache .. 'statusline')
 --
 -- this is for nvchad matugen config
+-- vim.pack.add { 'https://github.com/Axenide/WallSync' }
+-- require('wallsync').setup {
+-- auto_start = true,
+-- auto_install_templates = true,
+-- notify = true,
+-- debounce_ms = 500,
+-- }
+
+-- this is for old nvchad matugen setup
 -- os.execute 'python ~/.config/nvim/pywal/chadwal.py &> /dev/null &'
 
 -- local autocmd = vim.api.nvim_create_autocmd
 
 -- autocmd('Signal', {
-  -- pattern = 'SIGUSR1',
-  -- callback = function() require('nvchad.utils').reload() end,
+-- pattern = 'SIGUSR1',
+-- callback = function() require('nvchad.utils').reload() end,
 -- })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
