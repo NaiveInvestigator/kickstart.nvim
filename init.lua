@@ -130,14 +130,12 @@ do
   -- Enable break indent
   vim.o.breakindent = true
 
--- Undo directory
+  -- Undo directory
   vim.opt.undodir = vim.fn.expand '~/.vim/undodir'
 
   -- Create undo directory if it doesn't exist
   local undodir = vim.fn.expand '~/.vim/undodir'
-  if vim.fn.isdirectory(undodir) == 0 then
-    vim.fn.mkdir(undodir, 'p')
-  end
+  if vim.fn.isdirectory(undodir) == 0 then vim.fn.mkdir(undodir, 'p') end
 
   -- Enable undo/redo changes even after closing and reopening a file
   vim.o.undofile = true
@@ -276,7 +274,6 @@ do
   vim.keymap.set('i', '<S-Down>', '<Nop>', { desc = 'Disable Shift + Down (insert)' })
   vim.keymap.set('i', '<S-Up>', '<Nop>', { desc = 'Disable Shift + Up (insert)' })
 
-
   -- [[ Basic Autocommands ]]
   --  See `:help lua-guide-autocommands`
 
@@ -291,7 +288,7 @@ do
 end
 
 -- for nvchad ui
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
+-- vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
 
 -- ============================================================
 -- SECTION 2: PLUGIN MANAGER INTRO
@@ -386,34 +383,27 @@ do
   vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
   require('guess-indent').setup {}
 
-  vim.pack.add({
-  'https://github.com/nvim-lua/plenary.nvim',
-  'https://github.com/stevearc/dressing.nvim',
-  'https://github.com/nvim-flutter/flutter-tools.nvim',
-  })
+  vim.pack.add {
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/stevearc/dressing.nvim',
+    'https://github.com/nvim-flutter/flutter-tools.nvim',
+  }
   require('flutter-tools').setup {}
 
-  vim.pack.add({ 'https://github.com/numToStr/Comment.nvim' })
+  vim.pack.add { 'https://github.com/numToStr/Comment.nvim' }
   require('Comment').setup()
   -- Optional: custom mappings
-  vim.keymap.set('n', '<Space>/', function()
-    require('Comment.api').toggle.linewise.current()
-  end, { desc = 'Toggle comment' })
-  vim.keymap.set('v', '<Space>/', function()
-    require('Comment.api').toggle.linewise(vim.fn.visualmode())
-  end, { desc = 'Toggle comment in visual mode' })
+  vim.keymap.set('n', '<Space>/', function() require('Comment.api').toggle.linewise.current() end, { desc = 'Toggle comment' })
+  vim.keymap.set('v', '<Space>/', function() require('Comment.api').toggle.linewise(vim.fn.visualmode()) end, { desc = 'Toggle comment in visual mode' })
 
   vim.pack.add { gh 'ThePrimeagen/vim-be-good' }
 
   -- for nvchad ui
-  -- vim.pack.add({ 'https://github.com/nvchad/base46' })
+  -- vim.pack.add { 'https://github.com/nvchad/base46' }
   -- require('base46').load_all_highlights()
-
-  -- vim.pack.add({ 'https://github.com/nvchad/ui' })
-  -- require('nvchad')
-
-  -- dofile(vim.g.base46_cache .. "defaults")
-  -- dofile(vim.g.base46_cache .. "statusline")
+  --
+  -- vim.pack.add { 'https://github.com/nvchad/ui' }
+  -- require 'nvchad'
 
   -- Because lua is a real programming language, you can also have some logic to your installation -
   -- like only installing a plugin if a condition is met.
@@ -628,11 +618,11 @@ do
 
   -- Override default behavior and theme when searching
   -- vim.keymap.set('n', '<leader>/', function()
-    -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-    -- builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-      -- winblend = 10,
-      -- previewer = false,
-    -- })
+  -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+  -- builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+  -- winblend = 10,
+  -- previewer = false,
+  -- })
   -- end, { desc = '[/] Fuzzily search in current buffer' })
 
   -- It's also possible to pass additional configuration options.
@@ -869,9 +859,9 @@ do
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
-        lua = { 'stylua' },
-        dart = { 'dart_format' },
-        html = { 'superhtml' },
+      lua = { 'stylua' },
+      dart = { 'dart_format' },
+      html = { 'superhtml' },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -900,9 +890,8 @@ do
   -- vim.keymap.set('n', '<leader>/', function()
   -- require('luasnip.loaders.from_vscode').lazy_load()
 
-
-   vim.pack.add { gh 'Nash0x7E2/awesome-flutter-snippets', }
-   require('luasnip.loaders.from_vscode').lazy_load()
+  vim.pack.add { gh 'Nash0x7E2/awesome-flutter-snippets' }
+  require('luasnip.loaders.from_vscode').lazy_load()
 
   -- [[ Autocomplete Engine ]]
   vim.pack.add { { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' } }
@@ -1059,7 +1048,7 @@ end
 -- this is for nvchad base46 setup
 -- dofile(vim.g.base46_cache .. 'defaults')
 -- dofile(vim.g.base46_cache .. 'statusline')
-
+--
 -- this is for nvchad matugen config
 -- os.execute 'python ~/.config/nvim/pywal/chadwal.py &> /dev/null &'
 
@@ -1067,9 +1056,7 @@ end
 
 -- autocmd('Signal', {
   -- pattern = 'SIGUSR1',
-  -- callback = function()
-    -- require('nvchad.utils').reload()
-  -- end,
+  -- callback = function() require('nvchad.utils').reload() end,
 -- })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
