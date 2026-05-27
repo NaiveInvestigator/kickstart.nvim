@@ -288,7 +288,7 @@ do
 end
 
 -- for nvchad ui
--- vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
+vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
 
 -- ============================================================
 -- SECTION 2: PLUGIN MANAGER INTRO
@@ -399,11 +399,11 @@ do
   vim.pack.add { gh 'ThePrimeagen/vim-be-good' }
 
   -- for nvchad ui
-  -- vim.pack.add { 'https://github.com/nvchad/base46' }
-  -- require('base46').load_all_highlights()
+  vim.pack.add { 'https://github.com/nvchad/base46' }
+  require('base46').load_all_highlights()
   --
-  -- vim.pack.add { 'https://github.com/nvchad/ui' }
-  -- require 'nvchad'
+  vim.pack.add { 'https://github.com/nvchad/ui' }
+  require 'nvchad'
 
   -- Because lua is a real programming language, you can also have some logic to your installation -
   -- like only installing a plugin if a condition is met.
@@ -1045,28 +1045,18 @@ do
   -- require 'custom.plugins'
 end
 
--- this is for nvchad base46 setup
--- dofile(vim.g.base46_cache .. 'defaults')
--- dofile(vim.g.base46_cache .. 'statusline')
---
--- this is for nvchad matugen config
--- vim.pack.add { 'https://github.com/Axenide/WallSync' }
--- require('wallsync').setup {
--- auto_start = true,
--- auto_install_templates = true,
--- notify = true,
--- debounce_ms = 500,
--- }
+--for nvchad ui
+dofile(vim.g.base46_cache .. 'defaults')
+dofile(vim.g.base46_cache .. 'statusline')
 
--- this is for old nvchad matugen setup
--- os.execute 'python ~/.config/nvim/pywal/chadwal.py &> /dev/null &'
-
--- local autocmd = vim.api.nvim_create_autocmd
-
--- autocmd('Signal', {
--- pattern = 'SIGUSR1',
--- callback = function() require('nvchad.utils').reload() end,
--- })
+-- for nvchad ui (matugen integration)
+vim.pack.add { 'https://github.com/Axenide/WallSync' }
+require('wallsync').setup {
+  auto_start = true,
+  auto_install_templates = true,
+  notify = true,
+  debounce_ms = 500,
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

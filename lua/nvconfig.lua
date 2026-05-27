@@ -1,7 +1,7 @@
 local options = {
 
   base46 = {
-    theme = 'chadwal', -- default theme
+    theme = "onedark", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
@@ -35,6 +35,7 @@ local options = {
     tabufline = {
       enabled = true,
       lazyload = true,
+      treeOffsetFt = 'NvimTree',
       order = { 'treeOffset', 'buffers', 'tabs', 'btns' },
       modules = nil,
       bufwidth = 21,
@@ -83,6 +84,7 @@ local options = {
   },
 
   term = {
+    startinsert = true,
     base46_colors = true,
     winopts = { number = false, relativenumber = false },
     sizes = { sp = 0.3, vsp = 0.2, ['bo sp'] = 0.3, ['bo vsp'] = 0.2 },
