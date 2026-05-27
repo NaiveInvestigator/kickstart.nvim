@@ -1,7 +1,7 @@
 local options = {
 
   base46 = {
-    theme = "onedark", -- default theme
+    theme = 'chadwal', -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},

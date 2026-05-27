@@ -405,6 +405,19 @@ do
   vim.pack.add { 'https://github.com/nvchad/ui' }
   require 'nvchad'
 
+  -- for nvchad ui (matugen integration)
+  -- to make it work run this command
+  -- ln -s ~/.local/share/nvim/lazy/base46/lua/base46/themes/chadwal.lua ~/.local/share/nvim/site/pack/core/opt/base46/lua/base46/themes/
+  vim.pack.add { 'https://github.com/Nvchad/WallSync' }
+  require('wallsync').setup {
+    auto_start = true,
+    auto_install_templates = true,
+    notify = true,
+    debounce_ms = 500,
+    -- Optional: force "dark" or "light" if your generator does not update ~/.cache/wal/colors.
+    mode = nil,
+  }
+
   -- Because lua is a real programming language, you can also have some logic to your installation -
   -- like only installing a plugin if a condition is met.
   --
@@ -920,7 +933,7 @@ do
       -- See `:help blink-cmp-config-keymap` for defining your own keymap
       preset = 'default',
 
-      -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
+      -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:chadwalchadwal
       --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
     },
 
@@ -1048,15 +1061,6 @@ end
 --for nvchad ui
 dofile(vim.g.base46_cache .. 'defaults')
 dofile(vim.g.base46_cache .. 'statusline')
-
--- for nvchad ui (matugen integration)
-vim.pack.add { 'https://github.com/Axenide/WallSync' }
-require('wallsync').setup {
-  auto_start = true,
-  auto_install_templates = true,
-  notify = true,
-  debounce_ms = 500,
-}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
