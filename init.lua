@@ -390,12 +390,6 @@ do
   }
   require('flutter-tools').setup {}
 
-  vim.pack.add { 'https://github.com/numToStr/Comment.nvim' }
-  require('Comment').setup()
-  -- Optional: custom mappings
-  vim.keymap.set('n', '<Space>/', function() require('Comment.api').toggle.linewise.current() end, { desc = 'Toggle comment' })
-  vim.keymap.set('v', '<Space>/', function() require('Comment.api').toggle.linewise(vim.fn.visualmode()) end, { desc = 'Toggle comment in visual mode' })
-
   vim.pack.add { gh 'ThePrimeagen/vim-be-good' }
 
   -- for nvchad ui
@@ -503,6 +497,14 @@ do
   -- - sd'   - [S]urround [D]elete [']quotes
   -- - sr)'  - [S]urround [R]eplace [)] [']
   require('mini.surround').setup()
+
+  -- for comment keybinds
+  require('mini.comment').setup {
+    mappings = {
+      comment_line = '<space>/',
+      comment_visual = '<space>/',
+    },
+  }
 
   -- Simple and easy statusline.
   --  You could remove this setup call if you don't like it,
