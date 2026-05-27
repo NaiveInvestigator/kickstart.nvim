@@ -462,17 +462,17 @@ do
   --
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
   vim.pack.add { gh 'folke/tokyonight.nvim' }
-  ---@diagnostic disable-next-line: missing-fields
-  require('tokyonight').setup {
-    styles = {
-      comments = { italic = false }, -- Disable italics in comments
-    },
-  }
+  -- ---@diagnostic disable-next-line: missing-fields
+  -- require('tokyonight').setup {
+  -- styles = {
+  -- comments = { italic = false }, -- Disable italics in comments
+  -- },
+  -- }
 
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'tokyonight-night'
+  -- vim.cmd.colorscheme 'tokyonight-night'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -507,15 +507,15 @@ do
   -- Simple and easy statusline.
   --  You could remove this setup call if you don't like it,
   --  and try some other statusline plugin
-  local statusline = require 'mini.statusline'
+  -- local statusline = require 'mini.statusline'
   -- Set `use_icons` to true if you have a Nerd Font
-  statusline.setup { use_icons = vim.g.have_nerd_font }
+  -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
   -- You can configure sections in the statusline by overriding their
   -- default behavior. For example, here we set the section for
   -- cursor location to LINE:COLUMN
-  ---@diagnostic disable-next-line: duplicate-set-field
-  statusline.section_location = function() return '%2l:%-2v' end
+  -- ---@diagnostic disable-next-line: duplicate-set-field
+  -- statusline.section_location = function() return '%2l:%-2v' end
 
   -- ... and there is more!
   --  Check out: https://github.com/nvim-mini/mini.nvim
