@@ -285,6 +285,15 @@ do
     group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
     callback = function() vim.hl.on_yank() end,
   })
+
+  -- Enable wrap only for specific filetypes
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'markdown', 'text', 'gitcommit', 'plaintex' },
+    callback = function()
+      vim.opt_local.wrap = true
+      vim.opt_local.linebreak = true
+    end,
+  })
 end
 
 -- for nvchad ui
