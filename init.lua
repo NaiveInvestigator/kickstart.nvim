@@ -303,6 +303,23 @@ vim.api.nvim_create_user_command('PackUpdate', function()
   vim.pack.update()
 end, {})
 
+vim.api.nvim_create_user_command("PackPrune", function()
+  local inactive = vim.iter(vim.pack.get())
+    :filter(function(p)
+      return not p.active
+    end)
+    :map(function(p)
+      return p.spec.name
+    end)
+    :totable()
+
+  if #inactive > 0 then
+    vim.pack.del(inactive)
+  else
+    vim.notify("No inactive plugins to remove.")
+  end
+end, {})
+
 -- for nvchad ui
 vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
 
