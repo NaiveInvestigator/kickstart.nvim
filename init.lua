@@ -296,6 +296,13 @@ do
   })
 end
 
+-- ============================================================
+-- Custom user commands
+-- ============================================================
+vim.api.nvim_create_user_command('PackUpdate', function()
+  vim.pack.update()
+end, {})
+
 -- for nvchad ui
 vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
 
@@ -402,11 +409,11 @@ do
   vim.pack.add { gh 'ThePrimeagen/vim-be-good' }
 
   -- for nvchad ui
-  vim.pack.add { 'https://github.com/nvchad/base46' }
-  require('base46').load_all_highlights()
-  --
   vim.pack.add { 'https://github.com/nvchad/ui' }
   require 'nvchad'
+
+  vim.pack.add { 'https://github.com/nvchad/base46' }
+  require('base46').load_all_highlights()
 
   -- for nvchad ui (matugen integration)
   -- to make it work run this command
@@ -464,7 +471,7 @@ do
   -- change the command under that to load whatever the name of that colorscheme is.
   --
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  vim.pack.add { gh 'folke/tokyonight.nvim' }
+  -- vim.pack.add { gh 'folke/tokyonight.nvim' }
   -- ---@diagnostic disable-next-line: missing-fields
   -- require('tokyonight').setup {
   -- styles = {

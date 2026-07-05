@@ -1,7 +1,7 @@
 local options = {
 
   base46 = {
-    theme = 'chadwal', -- default theme
+    theme = 'wallsync', -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
