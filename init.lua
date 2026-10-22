@@ -116,7 +116,7 @@ do
   vim.o.mouse = 'a'
 
   -- Wrap lines if they go over the edge
-  vim.opt.wrap = false
+  vim.opt.wrap = true
 
   -- Don't show the mode, since it's already in the status line
   vim.o.showmode = false
